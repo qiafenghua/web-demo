@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel='stylesheet' href="css/bootstrap.min.index.css">
+    <link rel='stylesheet' href="css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="css/style.index.css">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row no-gutters">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-5 text-center left__section">
+            <div class="dowebok" id="showLogin">
+                <div class="animate__animated  animate__lightSpeedInLeft">
+                    <h1 class="heading my-5">用户登陆</h1>
+                    <p class="showMsg"><font color="red">[[${msg}]]</font></p>
+                    <p class="paragraph">请使用账号密码或第三方账号登陆</p>
+                    <form id="loginForm" th:action="@{/login}" class="mt-4" method="post">
+                        <div class="input-group my-4">
+                            <div class="input-group-prepend">
+                                <label for="formGroupExampleInput" class="d-block mx-auto"><img src="img/8dq.svg"
+                                                                                                width="18" height="18"
+                                                                                                class="mt-2"></label>
+                            </div>
+                            <input type="text" class="form-control" placeholder="请输入账号" aria-label=""
+                                   aria-describedby="basic-addon1" name="account" value="">
+                        </div>
+                        <div class="input-group my-4">
+                            <div class="input-group-prepend">
+                                <label for="formGroupExampleInput" class="d-block mx-auto"><img src="img/8dT.svg"
+                                                                                                width="18" height="18"
+                                                                                                class="mt-2"></label>
+                            </div>
+                            <input type="text" class="form-control" placeholder="请输入密码" aria-label=""
+                                   aria-describedby="basic-addon1" name="pwd" value="">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a name="registry" class="link">用户注册</a>
+                            <button type="submit" class="btn btn-primary">登陆</button>
+                        </div>
+                        <div class="form-check float-left my-3">
+                            <input class="form-check-input" type="checkbox" name="unForgetMe" value="checked"
+                                   id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">5天内可免账号密码登录</label>
+                        </div>
+                    </form>
+                    <div class="col-12 my-4">
+                        <span class="divider">或者</span>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-primary ">
+                            <img src="img/8fh.svg" width="20" height="20" alt="">
+                        </button>
+                        <button type="button" class="btn btn-primary btn-facebook">使用 Twitter 账号登陆</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--用户注册-->
+            <div class="dowebok" id="showRegistry">
+                <div class="animate__animated  animate__lightSpeedInRight">
+                    <h1 class="heading my-5">用户注册</h1>
+                    <p class="showMsg"><font name="msg" color="red">[[${msg}]]</font></p>
+                    <p class="paragraph">请输入账号密码注册</p>
+                    <form id="registryForm" th:action="@{/registry}" class="mt-4" method="post">
+                        <div class="input-group my-4">
+                            <div class="input-group-prepend">
+                                <label for="formGroupExampleInput" class="d-block mx-auto">
+                                    <img src="img/8dq.svg" width="18" height="18" class="mt-2">
+                                </label>
+                            </div>
+                            <input type="text" class="form-control" placeholder="请输入账号" aria-label=""
+                                   aria-describedby="basic-addon1" name="account" value="">
+                        </div>
+                        <div class="input-group my-4">
+                            <div class="input-group-prepend">
+                                <label for="formGroupExampleInput" class="d-block mx-auto">
+                                    <img src="img/8dT.svg" width="18" height="18" class="mt-2">
+                                </label>
+                            </div>
+                            <input type="text" class="form-control" placeholder="请输入密码" aria-label=""
+                                   aria-describedby="basic-addon1" name="pwd" value="">
+                        </div>
+
+                        <div class="input-group my-4">
+                            <div class="input-group-prepend">
+                                <label for="formGroupExampleInput" class="d-block mx-auto">
+                                    <img src="img/8dT.svg" width="18" height="18" class="mt-2">
+                                </label>
+                            </div>
+                            <input type="text" class="form-control" placeholder="请再次输入密码" aria-label=""
+                                   aria-describedby="basic-addon1" name="rePwd" value="">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a name="login" class="link">已有账号？去登录</a>
+                            <button type="submit" class="btn btn-primary">注册</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-7">
+            <div class="bg">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function login() {
+        $('#loginForm').submit();
+    }
+
+    function registry() {
+        //判断两次密码是否一样
+        var rePwd = $("#rePwd").val()
+        var pwd = $("#pwd").val()
+        if (rePwd === pwd) {
+            $('#registryForm').submit();
+        } else {
+            $(name['msg']).val("两次密码不一致，请重新输入!")
+        }
+    }
+
+    var showRegistry = false
+    // function handelRegistry(){
+    $("a[name='registry']").click(function () {
+        $("#showLogin").hide();
+        $("#showRegistry").show();
+    });
+
+    $("a[name='login']").click(function () {
+        $("#showLogin").show();
+        $("#showRegistry").hide();
+    });
+</script>
+
+</body>
+</html>

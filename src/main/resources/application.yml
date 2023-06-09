@@ -1,0 +1,17 @@
+
+spring:
+  application:
+    name: web-demo
+  datasource:
+    url: jdbc:mysql:///web-demo?serverTimezone=UTC&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Sh01073938
+
+# mp驼峰匹配
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+server:
+  port: 9090
+
